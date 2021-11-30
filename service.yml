@@ -1,0 +1,48 @@
+apiVersion: v1
+
+kind: Service
+metadata:
+  name: senthil-webapp
+spec:
+  selector:
+  # this is define which pod going to be  reperesnted by this service
+  # this service become a network endpoint for external users(browser)
+    app: webapp
+    
+  # this is used for the name of the pod 
+    #release: "0-5"
+  ports:
+   - name: http
+     port: 80
+     # this 80 is inside the Pods
+     nodePort: 30080
+     # this 30080 it is outside the pod like services 
+    
+  type: NodePort
+  # this is used to connect the browser 
+
+
+
+---
+
+apiVersion: v1
+
+kind: Service
+metadata:
+  name: senthil-queue
+spec:
+  selector:
+  # this is define which pod going to be  reperesnted by this service
+  # this service become a network endpoint for external users(browser)
+    app: webapp
+    
+  # this is used for the name of the pod 
+    #release: "0-5"
+  ports:
+   - name: http
+     port: 8161
+     # this 80 is inside the Pods
+     nodePort: 30010
+     # this 30080 it is outside the pod like services 
+    
+  type: NodePort
